@@ -18,7 +18,6 @@ or
 yarn add -D cypress-data-snapshot
 ```
 
-
 2. Add plugin commands to `cypress/support/index.js`
 
 ```javascript
@@ -32,7 +31,7 @@ const cypressDataSnapshot = require("cypress-data-snapshot/plugin")
 
 module.exports = (on, config) => {
   cypressDataSnapshot(on, config)
-  
+
   // This plugin adds `*.snap` to ignored files config, you need to return config for it to take effect
   return config
 }
@@ -52,7 +51,8 @@ it("Test is passing", () => {
 
 1. Launch the tests in dev (`cypress open`, then launch some or all the tests). The test to update should fail.
 2. Temporarily Change the `toMatchSnapshot` command into `updateSnapshot` into this test
-3. Cypress should automatically re-launch the tests, else launch it manually. The test to update should fail with the message: "Snapshot updated!".
+3. Cypress should automatically re-launch the tests, else launch it manually. The test to update should fail with the
+   message: "Snapshot updated!".
 4. Change back `updateSnapshot` into `toMatchSnapshot`
 
 ### Snapshot network requests
@@ -63,12 +63,12 @@ This plugin can be used for a variety of use case, the most common probably bein
 it("Snapshot request body", () => {
   cy.intercept("POST", "/api").as("clientRequest")
     .wait("@clientRequest").then(({ request }) => {
-      cy.toMatchSnapshot(request
-    })
+    cy.toMatchSnapshot(request)
+  })
 })
 ```
 
-
 ### More examples
 
-See [our own test examples](https://github.com/matchawine/cypressDataSnapshot/blob/main/cypress/integration/expectedToPass.js).
+See [our own test examples](https://github.com/matchawine/cypressDataSnapshot/blob/main/cypress/integration/expectedToPass.js)
+.
