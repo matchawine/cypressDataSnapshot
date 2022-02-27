@@ -16,7 +16,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm ci
+      - run: npm build
 
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          dry-run: true
