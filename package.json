@@ -1,6 +1,6 @@
 {
   "name": "cypress-data-snapshot",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "",
   "main": "dist/index.js",
   "exports": {
@@ -41,6 +41,8 @@
   },
   "dependencies": {
     "@jest/expect": "^28.0.0-alpha.2",
+    "@jest/expect-utils": "^28.0.0-alpha.5",
+    "jest-snapshot": "^28.0.0-alpha.5",
     "lodash": "^4.17.21",
     "serialize-anything": "^1.1.10"
   }
