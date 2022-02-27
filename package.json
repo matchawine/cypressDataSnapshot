@@ -1,12 +1,17 @@
 {
   "name": "cypress-data-snapshot",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Integrates the awesome Jest snapshot testing to Cypress.",
   "main": "dist/index.js",
   "exports": {
     ".": "./dist/index.js",
     "./plugin": "./dist/plugin/index.js"
   },
+  "keywords": [
+    "cypress",
+    "jest",
+    "snapshot testing"
+  ],
   "scripts": {
     "test": "cypress run",
     "cy:open": "cypress open",
