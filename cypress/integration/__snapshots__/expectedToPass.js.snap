@@ -20,3 +20,9 @@ Object {
   "test": true,
 }
 `;
+
+exports[`Data snapshot snapshot testing Update snapshot 1`] = `
+Object {
+  "test": false,
+}
+`;

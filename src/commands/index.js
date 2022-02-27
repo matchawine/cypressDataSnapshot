@@ -26,8 +26,8 @@ const getToMatchSnapshotCommand = ({ updateSnapshot }) =>
         throw new Error(getErrorText(snapshotName, testResult))
 
       if (updateSnapshot)
-        throw new Error(
-          `Snapshot \`${snapshotName}\` updated!\n\nNow replace back the \`.updateSnapshot\` command with \`.toMatchSnapshot\``,
+        cy.log(
+          `⚠️ Snapshot \`${snapshotName}\` updated!\n\nNow replace back the \`.updateSnapshot\` command with \`.toMatchSnapshot\``,
         )
     })
   }

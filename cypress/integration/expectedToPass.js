@@ -32,4 +32,8 @@ describe("Data snapshot snapshot testing", function () {
       },
     )
   })
+
+  it("Update snapshot", () => {
+    cy.updateSnapshot({ test: false })
+  })
 })

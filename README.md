@@ -51,9 +51,8 @@ it("Test is passing", () => {
 
 1. Launch the tests in dev (`cypress open`, then launch some or all the tests). The test to update should fail.
 2. Temporarily Change the `toMatchSnapshot` command into `updateSnapshot` into this test
-3. Cypress should automatically re-launch the tests, else launch it manually. The test to update should fail with the
-   message: "Snapshot updated!".
-4. Change back `updateSnapshot` into `toMatchSnapshot`
+3. Cypress should automatically re-launch the tests, else launch it manually. The test to update should succed.
+4. Don't forget to change back `updateSnapshot` into `toMatchSnapshot`
 
 ### Snapshot network requests
 

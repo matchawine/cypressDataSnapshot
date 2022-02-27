@@ -5,9 +5,3 @@ Object {
   "test": true,
 }
 `;
-
-exports[`Jest snapshot test Update snapshot 1`] = `
-Object {
-  "test": false,
-}
-`;
