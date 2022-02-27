@@ -2,4 +2,4 @@
 require("@babel/register")
 
 // eslint-disable-next-line immutable/no-mutation
-module.exports = require("./main").default
+module.exports = require("./main")

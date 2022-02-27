@@ -1,4 +1,4 @@
-import { dataSnapshotExpect } from "../../src/commands/dataSnapshotExpect"
+import { dataSnapshotExpect } from "../../src/dataSnapshotExpect"
 
 describe("Data snapshot snapshot testing", function () {
   it("Test is passing", () => {
