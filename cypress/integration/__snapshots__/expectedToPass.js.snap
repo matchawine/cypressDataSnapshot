@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data snapshot snapshot testing Test is passing 1`] = `
+Object {
+  "test": true,
+}
+`;
+
+exports[`Data snapshot snapshot testing Test with property matcher 1`] = `
+Object {
+  "anyArray": Any<Array>,
+  "anyBoolean": Any<Boolean>,
+  "anyDate": Any<Date>,
+  "anyNumber": Any<Number>,
+  "anyObject": Any<Object>,
+  "anyRegExp": Any<RegExp>,
+  "anyString": Any<String>,
+  "stringMatching": StringMatching /\\^yo/,
+  "stringNotMatching": StringNotMatching /\\^yo/,
+  "test": true,
+}
+`;

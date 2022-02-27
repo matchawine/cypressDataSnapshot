@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Jest snapshot test Test is not passing 1`] = `
+Object {
+  "test": true,
+}
+`;
+
+exports[`Jest snapshot test Update snapshot 1`] = `
+Object {
+  "test": false,
+}
+`;

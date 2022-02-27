@@ -1,0 +1,40 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:cypress/recommended",
+    "prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly"
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "impliedStrict": true
+    },
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": ["@babel", "sonarjs", "immutable", "cypress"],
+  "rules": {
+    "immutable/no-let": 1,
+    "immutable/no-mutation": 1,
+    "yoda": "warn",
+    "eqeqeq": "warn",
+    "no-implicit-globals": "warn",
+    "no-param-reassign": "error",
+    "max-lines-per-function": ["warn", 50],
+    "max-depth": ["warn", 4],
+    "object-shorthand": "error",
+    "no-async-promise-executor": "warn",
+    "react/prop-types": 0,
+    "max-params": ["warn", 3],
+    "arrow-body-style": ["warn", "as-needed"]
+  },
+  "reportUnusedDisableDirectives": true
+}
