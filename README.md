@@ -9,7 +9,7 @@ Integrates the awesome [Jest snapshot testing](https://jestjs.io/docs/snapshot-t
 1. install
 
 ```
-npm i --save-dev cypress-data-snapshot
+npm i -D cypress-data-snapshot
 ```
 
 or
@@ -21,7 +21,7 @@ yarn add -D cypress-data-snapshot
 2. Add plugin commands to `cypress/support/index.js`
 
 ```javascript
-import "cypress-data-snapshot";
+import "cypress-data-snapshot"
 ```
 
 2. Add plugin to `cypress/plugins/index.js`
@@ -37,6 +37,16 @@ module.exports = (on, config) => {
 }
 ```
 
+## Api
+
+Main command:
+
+`cy.toMatchSnapshot(actual, propertyMatchers?, hint?)`
+
+To temporarily update a snapshot (do not commit):
+
+`cy.updateSnapshot(actual, propertyMatchers?, hint?)`
+
 ## Usage
 
 ### Snapshot data
@@ -47,12 +57,79 @@ it("Test is passing", () => {
 })
 ```
 
+Snapshot file is generated, like Jest, in `<testFolder>/__snatpshots__/<testFileName>.js.snap`:
+
+```javascript
+exports[`Test is passing 1`] = `
+Object {
+  "test": true,
+}
+`;
+```
+
+When a snapshot difference occurs, the test fails. You get an actual/expected comparison in the Jest interactive
+interface, and the exact Jest intelligent diff in the cypress run console.
+
 ### Updating the snapshot
 
 1. Launch the tests in dev (`cypress open`, then launch some or all the tests). The test to update should fail.
 2. Temporarily Change the `toMatchSnapshot` command into `updateSnapshot` into this test
 3. Cypress should automatically re-launch the tests, else launch it manually. The test to update should succed.
 4. Don't forget to change back `updateSnapshot` into `toMatchSnapshot`
+
+### Using property matchers
+
+Do you have varying data like dates, ids, etc...? Use the
+adapted [Jest property matchers](https://jestjs.io/docs/snapshot-testing#property-matchers):
+
+```javascript
+import { dataSnapshotExpect } from "cypress-data-snapshot"
+
+it("Snapshot with property matchers", () => {
+  const data = {
+    test: true,
+    date: new Date(),
+    message: "success!"
+  }
+  cy.toMatchSnapshot(data, {
+    date: dataSnapshotExpect("any", Date),
+    message: dataSnapshotExpect("not.stringMatching", /error/),
+  })
+})
+```
+
+Generated snapshot:
+
+```javascript
+exports[`Snapshot with property matchers 1`] = `
+Object {
+  "date": Any<Date>,
+  "message": StringNotMatching /error/,
+  "test": true,
+}
+`;
+```
+
+### Adding a hint
+
+You can [add a hint](https://jestjs.io/docs/expect#tomatchsnapshotpropertymatchers-hint), which is a specific name to
+the snapshot. Particularly useful when you have several snapshots in the same test.
+
+```javascript
+it("Test with hint", () => {
+  cy.toMatchSnapshot({ test: true }, "I'm the hint")
+})
+```
+
+Generated snapshot:
+
+```javascript
+exports[`Data snapshot snapshot testing Test with hint: I'm the hint 1`] = `
+Object {
+  "test": true,
+}
+`;
+```
 
 ### Snapshot network requests
 
