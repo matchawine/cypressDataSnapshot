@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.7.1
+- Better readme
+
 ## v1.7.0
 - Added hint test
 - Fixed hint

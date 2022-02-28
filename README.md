@@ -4,6 +4,18 @@
 
 Integrates the awesome [Jest snapshot testing](https://jestjs.io/docs/snapshot-testing) to Cypress.
 
+## Jest vs. Cypress Plugin Data Snapshot
+
+Cypress Plugin Data Snapshot uses Jest v28 internally. Here is a comparison with Jest features:
+
+| Jest feature                              | Implemented ? | Details                                                                                                                           |
+|-------------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| `expect(actual).toMatchSnapshot()`        | ✅             | Api is cy.toMatchSnapshot(actual)                                                                                                 |
+| property matchers like `expect.any(Date)` | ✅             | All Jest property matchers are implemented. Api is slightly different: `dataSnapshotExpect("any", Date)`                          |
+| Inline snapshots                          | ❌             | I'm not even sure it's doable                                                                                                     |
+| hint: `.toMatchSnapshot("my snapshot")`   | ✅             | Same api                                                                                                                          |
+| Jest snapshot update                      | ❗️            | The update workflow is more manual: instead of clicking on links, you have to replace `toMatchSnapshot()` with `updateSnapshot()` |   
+
 ## Setup
 
 1. install
@@ -148,3 +160,9 @@ it("Snapshot request body", () => {
 
 See [our own test examples](https://github.com/matchawine/cypressDataSnapshot/blob/main/cypress/integration/expectedToPass.js)
 .
+
+## Thanks & thoughts
+
+Thanks to [@alexbeletsky](https://github.com/alexbeletsky)
+for [his inspirating article](https://medium.com/blogfoster-engineering/how-to-use-the-power-of-jests-snapshot-testing-without-using-jest-eff3239154e5)
+about using Jest standalone!
