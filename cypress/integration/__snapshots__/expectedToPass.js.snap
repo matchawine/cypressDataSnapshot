@@ -1,12 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Data snapshot snapshot testing Snapshot with property matchers 1`] = `
+Object {
+  "date": Any<Date>,
+  "message": StringNotMatching /error/,
+  "test": true,
+}
+`;
+
 exports[`Data snapshot snapshot testing Test is passing 1`] = `
 Object {
   "test": true,
 }
 `;
 
-exports[`Data snapshot snapshot testing Test with property matcher 1`] = `
+exports[`Data snapshot snapshot testing Test with a lot of matchers 1`] = `
 Object {
   "anyArray": Any<Array>,
   "anyBoolean": Any<Boolean>,
@@ -17,6 +25,12 @@ Object {
   "anyString": Any<String>,
   "stringMatching": StringMatching /\\^yo/,
   "stringNotMatching": StringNotMatching /\\^yo/,
+  "test": true,
+}
+`;
+
+exports[`Data snapshot snapshot testing Test with hint: I'm the hint 1`] = `
+Object {
   "test": true,
 }
 `;

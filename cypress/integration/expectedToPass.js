@@ -5,7 +5,23 @@ describe("Data snapshot snapshot testing", function () {
     cy.toMatchSnapshot({ test: true })
   })
 
-  it("Test with property matcher", () => {
+  it("Test with hint", () => {
+    cy.toMatchSnapshot({ test: true }, null, "I'm the hint")
+  })
+
+  it("Snapshot with property matchers", () => {
+    const data = {
+      test: true,
+      date: new Date(),
+      message: "success!",
+    }
+    cy.toMatchSnapshot(data, {
+      date: dataSnapshotExpect("any", Date),
+      message: dataSnapshotExpect("not.stringMatching", /error/),
+    })
+  })
+
+  it("Test with a lot of matchers", () => {
     cy.toMatchSnapshot(
       {
         test: true,
