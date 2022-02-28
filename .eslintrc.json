@@ -28,11 +28,9 @@
     "eqeqeq": "warn",
     "no-implicit-globals": "warn",
     "no-param-reassign": "error",
-    "max-lines-per-function": ["warn", 50],
     "max-depth": ["warn", 4],
     "object-shorthand": "error",
     "no-async-promise-executor": "warn",
-    "react/prop-types": 0,
     "max-params": ["warn", 3],
     "arrow-body-style": ["warn", "as-needed"]
   },
