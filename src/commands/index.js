@@ -6,7 +6,9 @@ import {
 import { serialize } from "./serialize"
 
 const getToMatchSnapshotCommand = ({ updateSnapshot }) =>
-  function (actual, propertyMatchers, hint) {
+  function (actual, ...optionalArgs) {
+    const [propertyMatchers, hint] = optionalArgs
+
     const snapshotFilePath = getSnapshotFilePath(
       this.test.invocationDetails.absoluteFile,
     )

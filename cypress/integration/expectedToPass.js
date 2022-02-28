@@ -6,7 +6,7 @@ describe("Data snapshot snapshot testing", function () {
   })
 
   it("Test with hint", () => {
-    cy.toMatchSnapshot({ test: true }, null, "I'm the hint")
+    cy.toMatchSnapshot({ test: true }, "I'm the hint")
   })
 
   it("Snapshot with property matchers", () => {
