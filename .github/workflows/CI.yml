@@ -1,8 +1,8 @@
 name: CI
 on:
   push:
-  pull_request:
     branches: [main]
+  pull_request:
 
 jobs:
   cypressTest:
@@ -21,6 +21,7 @@ jobs:
       - run: npm ci --ignore-scripts
 
       - name: Check ESLint
+        # https://github.com/bradennapier/eslint-plus-action/issues/72
         uses: Maggi64/eslint-plus-action@master
         with:
           issueSummaryOnlyOnEvent: true
