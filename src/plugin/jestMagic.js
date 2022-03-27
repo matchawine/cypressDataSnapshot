@@ -18,6 +18,5 @@ export const getMatcher = ({ snapshotState, snapshotName }) =>
 
 export const getSnapshotState = ({ snapshotFilePath, updateSnapshot }) =>
   new SnapshotState(snapshotFilePath, {
-    updateSnapshot:
-      process.env.SNAPSHOT_UPDATE || updateSnapshot ? "all" : "new",
+    updateSnapshot,
   })
