@@ -5,7 +5,7 @@ import {
 } from "./utils"
 import { serialize } from "./serialize"
 
-const getToMatchSnapshotCommand = ({ updateSnapshot }) =>
+const getToMatchSnapshotCommand = ({ forceUpdateSnapshot }) =>
   function (actual, ...optionalArgs) {
     const [propertyMatchers, hint] = optionalArgs
 
@@ -15,6 +15,7 @@ const getToMatchSnapshotCommand = ({ updateSnapshot }) =>
     const snapshotName = getDefaultSnapshotName(Cypress)
     const serializedActual = serialize(actual)
     const serializedPropertyMatchers = serialize(propertyMatchers)
+    const updateSnapshot = forceUpdateSnapshot || Cypress.env("SNAPSHOT_UPDATE")
 
     cy.task("toMatchSnapshot", {
       serializedActual,
@@ -36,10 +37,10 @@ const getToMatchSnapshotCommand = ({ updateSnapshot }) =>
 
 Cypress.Commands.add(
   "toMatchSnapshot",
-  getToMatchSnapshotCommand({ updateSnapshot: false }),
+  getToMatchSnapshotCommand({ forceUpdateSnapshot: false }),
 )
 
 Cypress.Commands.add(
   "updateSnapshot",
-  getToMatchSnapshotCommand({ updateSnapshot: true }),
+  getToMatchSnapshotCommand({ forceUpdateSnapshot: "all" }),
 )
