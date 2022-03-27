@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.8.0
+- Better env management
+
 ## v1.7.2
 - Better tests, add tests & eslint to CI
 
