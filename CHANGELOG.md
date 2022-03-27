@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.7.2
+- Better tests, add tests & eslint to CI
+
 ## v1.7.1
 - Better readme
 
