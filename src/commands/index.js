@@ -2,16 +2,16 @@ import {
   getDefaultSnapshotName,
   getErrorText,
   getSnapshotFilePath,
+  getTestPath,
 } from "./utils"
 import { serialize } from "./serialize"
 
 const getToMatchSnapshotCommand = ({ forceUpdateSnapshot }) =>
   function (actual, ...optionalArgs) {
     const [propertyMatchers, hint] = optionalArgs
-
-    const snapshotFilePath = getSnapshotFilePath(
-      this.test.invocationDetails.absoluteFile,
-    )
+    const absoluteFile = this.test.invocationDetails.absoluteFile
+    const snapshotFilePath = getSnapshotFilePath(absoluteFile)
+    const testPath = getTestPath(absoluteFile)
     const snapshotName = getDefaultSnapshotName(Cypress)
     const serializedActual = serialize(actual)
     const serializedPropertyMatchers = serialize(propertyMatchers)
@@ -26,7 +26,7 @@ const getToMatchSnapshotCommand = ({ forceUpdateSnapshot }) =>
       updateSnapshot,
     }).then(testResult => {
       if (!testResult.pass)
-        throw new Error(getErrorText(snapshotName, testResult))
+        throw new Error(getErrorText({ snapshotName, testResult, testPath }))
 
       if (updateSnapshot)
         cy.log(
