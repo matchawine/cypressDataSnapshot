@@ -1,0 +1,25 @@
+name: CI
+on:
+  - push
+  - pull_request
+
+jobs:
+  cypressTest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm ci --ignore-scripts
+
+      - name: Check ESLint
+        uses: bradennapier/eslint-plus-action@v3.4.2
+        with:
+          issueSummaryOnlyOnEvent: true
