@@ -24,12 +24,7 @@ export default (on, config) => {
     toMatchSnapshot(serializedContext) {
       try {
         const context = deserializeContext(serializedContext)
-        const testResult = toMatchSnapshot(context)
-
-        const message = testResult.message()
-        if (message) console.warn(message)
-
-        return { ...testResult, message }
+        return toMatchSnapshot(context)
       } catch (e) {
         console.error(e)
         throw e

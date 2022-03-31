@@ -19,10 +19,3 @@ export const getSnapshotFilePath = absoluteFile => {
 
 export const getDefaultSnapshotName = Cypress =>
   Cypress.currentTest.titlePath.join(" ")
-
-export const getErrorText = ({
-  snapshotName,
-  testResult: { actual, expected },
-  testPath,
-}) =>
-  `Snapshot name: \`${snapshotName}\`\n\nExpected: ${expected}\n\nActual: ${actual}\n\nTo update all this spec snapshot, run:\n\`$ cypress run --env SNAPSHOT_UPDATE=all --spec ${testPath}\``

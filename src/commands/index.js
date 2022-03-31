@@ -1,10 +1,10 @@
 import {
   getDefaultSnapshotName,
-  getErrorText,
   getSnapshotFilePath,
   getTestPath,
-} from "./utils"
+} from "./cypressFilePath"
 import { serialize } from "./serialize"
+import { getFrontEndErrorText } from "./errors"
 
 const getToMatchSnapshotCommand = ({ forceUpdateSnapshot }) =>
   function (actual, ...optionalArgs) {
@@ -21,12 +21,15 @@ const getToMatchSnapshotCommand = ({ forceUpdateSnapshot }) =>
       serializedActual,
       snapshotFilePath,
       snapshotName,
+      testPath,
       hint,
       serializedPropertyMatchers,
       updateSnapshot,
     }).then(testResult => {
       if (!testResult.pass)
-        throw new Error(getErrorText({ snapshotName, testResult, testPath }))
+        throw new Error(
+          getFrontEndErrorText({ snapshotName, testResult, testPath }),
+        )
 
       if (updateSnapshot)
         cy.log(

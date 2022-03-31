@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { getPropertyMatchersFromDeserialized } from "./propertyMatchers"
 import { getMatcher, getSnapshotState } from "./jestMagic"
+import { logMessageInServer } from "../commands/errors"
 
 const verbose = false
 
@@ -11,6 +12,7 @@ export const toMatchSnapshot = context => {
     actual,
     snapshotFilePath,
     snapshotName,
+    testPath,
     hint,
     deserializedPropertyMatchers,
     updateSnapshot,
@@ -29,9 +31,11 @@ export const toMatchSnapshot = context => {
 
   const matcher = getMatcher({ snapshotState, snapshotName })
 
-  const result = matcher(actual, ...matcherOptionalArgs)
+  const testResult = matcher(actual, ...matcherOptionalArgs)
 
   snapshotState.save()
 
-  return result
+  logMessageInServer({ testResult, testPath })
+
+  return testResult
 }
