@@ -8,13 +8,13 @@ Integrates the awesome [Jest snapshot testing](https://jestjs.io/docs/snapshot-t
 
 Cypress Plugin Data Snapshot uses Jest v28 internally. Here is a comparison with Jest features:
 
-| Jest feature                              | Implemented ? | Details                                                                                                                           |
-|-------------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| `expect(actual).toMatchSnapshot()`        | ✅             | Api is cy.toMatchSnapshot(actual)                                                                                                 |
-| property matchers like `expect.any(Date)` | ✅             | All Jest property matchers are implemented. Api is slightly different: `dataSnapshotExpect("any", Date)`                          |
-| Inline snapshots                          | ❌             | I'm not even sure it's doable                                                                                                     |
-| hint: `.toMatchSnapshot("my snapshot")`   | ✅             | Same api                                                                                                                          |
-| Jest snapshot update                      | ❗️            | The update workflow is more manual: instead of clicking on links, you have to replace `toMatchSnapshot()` with `updateSnapshot()` |   
+| Jest feature                              | Implemented ? | Details                                                                                                  |
+|-------------------------------------------|---------------|----------------------------------------------------------------------------------------------------------|
+| `expect(actual).toMatchSnapshot()`        | ✅             | Api is cy.toMatchSnapshot(actual)                                                                        |
+| property matchers like `expect.any(Date)` | ✅             | All Jest property matchers are implemented. Api is slightly different: `dataSnapshotExpect("any", Date)` |
+| Inline snapshots                          | ❌             | I'm not even sure it's doable                                                                            |
+| hint: `.toMatchSnapshot("my snapshot")`   | ✅             | Same api                                                                                                 |
+| Jest snapshot update                      | ✅             | The update snapshot command is written in the console.                                                   |   
 
 ## Setup
 
@@ -79,15 +79,18 @@ Object {
 `;
 ```
 
-When a snapshot difference occurs, the test fails. You get an actual/expected comparison in the Jest interactive
-interface, and the exact Jest intelligent diff in the cypress run console.
+When a snapshot difference occurs, the test fails. You get an actual/expected comparison in the Cypress interactive
+interface, and the exact Jest intelligent diff in the cypress run console. You also get an update command in both.
 
 ### Updating the snapshot
 
-1. Launch the tests in dev (`cypress open`, then launch some or all the tests). The test to update should fail.
-2. Temporarily Change the `toMatchSnapshot` command into `updateSnapshot` into this test
-3. Cypress should automatically re-launch the tests, else launch it manually. The test to update should succed.
-4. Don't forget to change back `updateSnapshot` into `toMatchSnapshot`
+The update command you recieve is a `cypress run` command, with the incriminated spec, and the `SNAPSHOT_UPDATE=all`
+environment variable.
+**It updates all the snapshots of the spec**. If you run this command, it will update the snapshot.
+
+There is a powerful and more precise alternative workflow, but a bit more hacky. Rename the `toMatchSnapshot` command
+you want to update into `updateSnapshot`. Then save, let the test be re-run, the snapshot will be updated. Then change
+back `updateSnapshot` into `toMatchSnapshot`.
 
 ### Using property matchers
 
