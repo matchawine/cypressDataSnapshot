@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.9.0
+- Cleaner & more jest-like update workflow
+
 ## v1.8.0
 - Better env management
 
