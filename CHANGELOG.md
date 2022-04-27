@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.10.0
+- Fix the absolute file path bug with alternate method
+
 ## v1.9.0
 - Cleaner & more jest-like update workflow
 

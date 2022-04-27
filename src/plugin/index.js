@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { toMatchSnapshot } from "./toMatchSnapshotInternal"
 import { deserialize } from "serialize-anything"
+import testFilePath from "./testFilePath"
 
 const deserializeContext = ({
   serializedActual,
@@ -19,6 +20,8 @@ const modifyConfig = config => {
 
 export default (on, config) => {
   modifyConfig(config)
+
+  testFilePath(on)
 
   on("task", {
     toMatchSnapshot(serializedContext) {
